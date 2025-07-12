@@ -27,12 +27,13 @@ Conservation de l'état pour chaque descripteur
 
 Structure du projet
 get_next_line/
-├── get_next_line.h
-├── get_next_line.c
-├── get_next_line_utils.c
-├── get_next_line_bonus.h    # Bonus
-├── get_next_line_bonus.c    # Bonus
-└── get_next_line_utils_bonus.c  # Bonus
+get_next_line.h
+get_next_line.c
+get_next_line_utils.c
+get_next_line_bonus.h    # Bonus
+get_next_line_bonus.c    # Bonus
+get_next_line_utils_bonus.c  # Bonus
+
 Contraintes
 
 Utilisation uniquement de read, malloc et free
