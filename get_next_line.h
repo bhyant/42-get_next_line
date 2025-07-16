@@ -6,7 +6,7 @@
 /*   By: tbhuiyan <tbhuiyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:59:10 by marvin            #+#    #+#             */
-/*   Updated: 2025/05/19 18:15:09 by tbhuiyan         ###   ########.fr       */
+/*   Updated: 2025/07/17 00:20:54 by tbhuiyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
