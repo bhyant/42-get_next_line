@@ -1,42 +1,84 @@
-get_next_line
-Description
-get_next_line est un projet de l'école 42 qui consiste à créer une fonction capable de lire un fichier ligne par ligne. Ce projet introduit les concepts de lecture par buffer et de gestion de la mémoire statique.
-Objectifs
-Ce projet permet de :
+# get_next_line - Projet 42
 
-Maîtriser la lecture de fichiers avec la fonction read
-Comprendre la gestion de buffers de taille fixe
-Utiliser les variables statiques pour conserver l'état entre les appels
-Gérer efficacement la mémoire avec allocation dynamique
-Traiter les cas limites (EOF, erreurs, fichiers vides)
+## 📚 Description
 
-Prototype
-char *get_next_line(int fd);
-Fonctionnement
-La fonction lit le fichier associé au descripteur fd et retourne une ligne à chaque appel, incluant le caractère \n s'il existe. Elle retourne NULL quand la fin du fichier est atteinte ou en cas d'erreur.
-Paramètres
+**get_next_line** est un projet du cursus 42 qui consiste à écrire une fonction capable de lire, de manière efficace, une ligne à la fois depuis un descripteur de fichier. La fonction doit retourner chaque ligne lue, y compris le retour à la ligne, et fonctionner pour n'importe quel type de fichier ou d'entrée standard.
 
-fd : Descripteur de fichier à lire
-BUFFER_SIZE : Taille du buffer de lecture (définie à la compilation)
+Ce projet est idéal pour travailler la gestion de la mémoire, la manipulation de buffers, et l’utilisation des appels système tels que `read`.
 
-Partie bonus
-La version bonus gère plusieurs descripteurs de fichiers simultanément :
+---
 
-Lecture de plusieurs fichiers en parallèle
-Conservation de l'état pour chaque descripteur
+## 🛠️ Fonctionnalités
 
-Structure du projet
-get_next_line/
-get_next_line.h
-get_next_line.c
-get_next_line_utils.c
-get_next_line_bonus.h    # Bonus
-get_next_line_bonus.c    # Bonus
-get_next_line_utils_bonus.c  # Bonus
+- Lecture ligne par ligne depuis un ou plusieurs fichiers (ou stdin)
+- Gestion efficace du buffer
+- Prise en charge de plusieurs descripteurs de fichiers simultanément
+- Retourne chaque ligne, avec ou sans saut de ligne
+- Respect du prototype imposé :  
+  ```c
+  char *get_next_line(int fd);
+  ```
 
-Contraintes
+---
 
-Utilisation uniquement de read, malloc et free
-Pas de variables globales
-Gestion de la mémoire sans fuites
-Comportement indéfini si le fichier change entre les appels
+## 📂 Structure du projet
+
+- `get_next_line.c` : Fonction principale et logique de lecture
+- `get_next_line_utils.c` : Fonctions utilitaires (gestion de chaînes, mémoire…)
+- `get_next_line.h` : Header avec le prototype et les définitions
+- `Makefile` : Compilation du projet
+
+---
+
+## 🚀 Utilisation
+
+### 1. Compilation
+
+```bash
+make
+```
+
+### 2. Utilisation dans vos projets
+
+Incluez le header dans votre code :
+
+```c
+#include "get_next_line.h"
+```
+
+Exemple d’utilisation :
+
+```c
+int fd = open("fichier.txt", O_RDONLY);
+char *line;
+while ((line = get_next_line(fd)) != NULL)
+{
+    printf("%s", line);
+    free(line);
+}
+close(fd);
+```
+
+---
+
+## 📝 Contraintes
+
+- Respect du prototype demandé
+- Gestion correcte de la mémoire (aucune fuite)
+- Fonctionne avec plusieurs descripteurs en parallèle
+- Interdiction d’utiliser des fonctions de la libc non autorisées
+
+---
+
+## 💡 Conseils
+
+- Testez avec des fichiers de tailles et contenus variés
+- Vérifiez les comportements en fin de fichier et avec des fichiers vides
+- Utilisez `valgrind` pour traquer les fuites de mémoire
+- Respectez la norme de codage 42 (Norminette)
+
+---
+
+## 👤 Auteur
+
+Projet réalisé par [bhyant](https://github.com/bhyant) dans le cadre du cursus 42.
